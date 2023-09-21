@@ -2,13 +2,14 @@ import java.util.Scanner;
 
 public class Main {
 
-    public static int discount(int duration, int subject) {
+    public static int discount(int duration, String subject) {
+        subject = subject.toLowerCase();
         switch (subject) {
-            case 1 -> {
+            case "normal" -> {
                 if (duration < 0 || duration > 40) {
                 } else return 0;
             }
-            case 2 -> {
+            case "nearpoor" -> {
                 if (duration < 0) {
                 } else if (duration < 3) {
                     return 0;
@@ -18,7 +19,7 @@ public class Main {
                     return 15;
                 }
             }
-            case 3 -> {
+            case "poor" -> {
                 if (duration < 0) {
                 } else if (duration < 1) {
                     return 0;
@@ -33,33 +34,26 @@ public class Main {
         }
         return -1;
     }
+
     public static void printSubject() {
-        System.out.println("1.Binh thuong");
-        System.out.println("2.Can ngheo");
-        System.out.println("3.Ngheo");
-        System.out.print("Choose: ");
+        System.out.println("Type of household?");
+        System.out.print("Enter your type (normal/nearpoor/poor): ");
     }
 
-//    public static void main(String[] args) {
-//        Scanner scanner = new Scanner(System.in);
-//
-//        int duration;
-//        int subject;
-//        int result;
-//
-//        printSubject();
-//        subject = scanner.nextInt();
-//        System.out.print("Enter how long you have stayed(year): ");
-//        duration = scanner.nextInt();
-//
-//        if (subject == 1) {
-//            result = discount(duration, 1);
-//        } else if (subject == 2) {
-//            result = discount(duration, 2);
-//        } else {
-//            result = discount(duration, 3);
-//        }
-//
-//        System.out.println(result);
-//    }
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        int duration;
+        String subject;
+        int result;
+
+        printSubject();
+        subject = scanner.next();
+        System.out.print("Enter how long you have stayed(year): ");
+        duration = scanner.nextInt();
+
+        result = discount(duration, subject);
+
+        System.out.println(result);
+    }
 }
